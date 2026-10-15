@@ -8,7 +8,10 @@ import { booleanAttribute, Component, computed, effect, ElementRef, input, model
     <div #parent class="relative rounded-full bg-color-disabled" [class]="this._verticalClass().parent">
       <div class="absolute rounded-full bg-color-primary" [class.bg-color-disabled!]="this.disabled()" [class]="this._verticalClass().track"></div>
       <div class="absolute" [class]="this._verticalClass().thumbDiv">
-        <button #thumb [disabled]="this.disabled()" (keydown)="this.onKeyDown($event)" [class]="this._verticalClass().thumb" class="absolute size-4 -translate-x-1/2 cursor-pointer rounded-full bg-color-text ring-color-text-accent/10 focus:ring-8 outline-color-primary outline-offset-1 focus-visible:outline-[3px] disabled:cursor-default disabled:bg-color-disabled"></button>
+        <button #thumb [disabled]="this.disabled()" (keydown)="this.onKeyDown($event)"
+          [class]="this._verticalClass().thumb"
+          class="absolute size-4 -translate-x-1/2 cursor-pointer rounded-full bg-color-primary dark:bg-white ring-color-text-accent/10 focus:ring-8 outline-black dark:outline-color-primary outline-offset-1 focus-visible:outline-[3px] disabled:cursor-default disabled:bg-color-disabled">
+        </button>
       </div>
     </div>
   `,

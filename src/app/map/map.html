@@ -48,13 +48,13 @@
 
 @if (this.currentRadarImage()?.radarImage?.date; as date) {
   <!-- Time information -->
-  <div appPanel class="absolute top-2 sm:top-6 left-1/2 transform -translate-x-1/2 z-500 w-52 py-2 text-center" animate.enter="motion-safe:animate-slide-in-top">
-    <div class="font-mono font-semibold text-2xl text-color-text-accent">
+  <div appPanel class="absolute top-2 sm:top-6 left-1/2 transform -translate-x-1/2 z-500 w-52 py-3 text-center" animate.enter="motion-safe:animate-slide-in-top">
+    <h1 class="font-mono pb-2">
       {{ date | date: 'HH:mm' }}
-    </div>
+    </h1>
     <div class="w-full text-xs">
       <span>{{ date | date: 'E, d. MMM' }}</span>
-      <span class="mx-1">·</span>
+      <span class="px-1">·</span>
       <span>Updated {{ this.refreshedAt() | date: 'HH:mm' }}</span>
     </div>
   </div>

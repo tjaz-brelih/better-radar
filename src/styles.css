@@ -57,7 +57,7 @@
 
 
 h1 {
-  @apply text-2xl font-bold;
+  @apply text-2xl font-semibold leading-none text-color-text-accent;
 }
 
 a {
