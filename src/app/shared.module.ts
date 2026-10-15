@@ -1,16 +1,19 @@
 import { NgModule } from "@angular/core";
 
-import { ButtonComponent, ButtonGroupDirective, IconButtonComponent, IconComponent, MenuDirective, SliderComponent, TooltipDirective } from "components";
+import { ButtonComponent, ButtonGroupDirective, IconButtonComponent, IconComponent, MenuDirective, SliderComponent, TooltipDirective, PanelDirective, IconButton2Component, DividerComponent } from "components";
 
 
 const STUFF = [
-  IconButtonComponent,
   ButtonComponent,
   ButtonGroupDirective,
+  DividerComponent,
+  IconButtonComponent,
+  IconButton2Component,
   IconComponent,
-  TooltipDirective,
   MenuDirective,
-  SliderComponent
+  PanelDirective,
+  SliderComponent,
+  TooltipDirective,
 ];
 
 
