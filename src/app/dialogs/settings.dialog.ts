@@ -13,7 +13,7 @@ import { ButtonGroupDirective, IconButtonComponent, IconComponent, TooltipDirect
 
     <div class="pt-6 grid grid-cols-[auto_1fr] gap-x-8 gap-y-6">
 
-      <section class="flex flex-row items-center gap-4">
+      <section>
         <label>Theme</label>
 
         <app-button-group direction="horizontal">
