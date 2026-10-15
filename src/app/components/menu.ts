@@ -1,13 +1,16 @@
 import { Directive } from "@angular/core";
 import { CdkMenu, CdkMenuItem } from "@angular/cdk/menu";
 
+import { PanelDirective } from "./panel";
+
+
 
 @Directive({
   selector: '[appMenu]',
-  hostDirectives: [CdkMenu],
+  hostDirectives: [CdkMenu, PanelDirective],
   host: {
     class: `
-      min-w-56 py-1 rounded-lg text-sm shadow-xl/30 bg-color-background border border-color-border
+      min-w-56 py-1.5 text-sm rounded-lg
     `
   }
 })
@@ -23,7 +26,7 @@ export class MenuDirective { }
       not-disabled:cursor-pointer
       disabled:text-color-disabled
       focus:outline-0
-      hover:not-disabled:bg-color-background-hover hover:not-disabled:text-color-text-hover hover:not-disabled:text-shadow-hover
+      hover:not-disabled:bg-color-background/80 hover:not-disabled:text-color-text-accent
     `
   }
 })

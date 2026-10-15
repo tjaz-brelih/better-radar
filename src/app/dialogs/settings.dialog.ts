@@ -13,20 +13,20 @@ import { ButtonGroupDirective, IconButtonComponent, IconComponent, TooltipDirect
 
     <div class="pt-6 grid grid-cols-[auto_1fr] gap-x-8 gap-y-6">
 
-      <section class="flex flex-row items-center gap-4">
+      <section>
         <label>Theme</label>
 
         <app-button-group direction="horizontal">
-          <button appIconButton [active]="this.theme() === 'auto'" (click)="this.theme.set('auto')" appTooltip="Follow system preference" location="bottom">
+          <button appIconButton [active]="this.theme() === 'auto'" (click)="this.theme.set('auto')" appTooltip="System" tooltipLocation="bottom">
             <app-icon icon="sun-moon" />
           </button>
 
-          <button appIconButton [active]="this.theme() === 'light'" (click)="this.theme.set('light')" appTooltip="Light theme" location="bottom">
-            <app-icon icon="sun" />
+          <button appIconButton [active]="this.theme() === 'dark'" (click)="this.theme.set('dark')" appTooltip="Dark" tooltipLocation="bottom">
+            <app-icon icon="moon" />
           </button>
 
-          <button appIconButton [active]="this.theme() === 'dark'" (click)="this.theme.set('dark')" appTooltip="Dark theme" location="bottom">
-            <app-icon icon="moon" />
+          <button appIconButton [active]="this.theme() === 'light'" (click)="this.theme.set('light')" appTooltip="Light" tooltipLocation="bottom">
+            <app-icon icon="sun" />
           </button>
         </app-button-group>
       </section>

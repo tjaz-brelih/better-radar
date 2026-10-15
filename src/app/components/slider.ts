@@ -8,7 +8,10 @@ import { booleanAttribute, Component, computed, effect, ElementRef, input, model
     <div #parent class="relative rounded-full bg-color-disabled" [class]="this._verticalClass().parent">
       <div class="absolute rounded-full bg-color-primary" [class.bg-color-disabled!]="this.disabled()" [class]="this._verticalClass().track"></div>
       <div class="absolute" [class]="this._verticalClass().thumbDiv">
-        <button [disabled]="this.disabled()" [class]="this._verticalClass().thumb" class="absolute size-4 -translate-x-1/2 cursor-pointer rounded-full bg-color-primary border border-color-text disabled:cursor-default disabled:bg-color-disabled"></button>
+        <button #thumb [disabled]="this.disabled()" (keydown)="this.onKeyDown($event)"
+          [class]="this._verticalClass().thumb"
+          class="absolute size-4 -translate-x-1/2 cursor-pointer rounded-full bg-color-primary dark:bg-white ring-color-text-accent/10 focus:ring-8 outline-black dark:outline-color-primary outline-offset-1 focus-visible:outline-[3px] disabled:cursor-default disabled:bg-color-disabled">
+        </button>
       </div>
     </div>
   `,
@@ -49,6 +52,7 @@ export class SliderComponent {
   });
 
   protected parent = viewChild.required<ElementRef<HTMLElement>>("parent");
+  protected thumb = viewChild.required<ElementRef<HTMLElement>>("thumb");
 
   private _dragging = false;
 
@@ -60,6 +64,9 @@ export class SliderComponent {
 
   public startDrag(event: PointerEvent) {
     if (this.disabled()) { return; }
+
+    event.preventDefault();
+    this.thumb().nativeElement.focus({ preventScroll: true, focusVisible: false });
 
     this._dragging = true;
     this.parent().nativeElement.setPointerCapture(event.pointerId);
@@ -88,6 +95,29 @@ export class SliderComponent {
     const snappedValuePercent = Math.round(clampedValue / this.step()) * this.step();
 
     this.value.set(snappedValuePercent);
+  }
+
+  public onKeyDown(event: KeyboardEvent) {
+    if (this.disabled()) { return; }
+
+    let direction: number;
+    switch (event.key) {
+      case "ArrowRight":
+      case "ArrowUp":
+        direction = 1;
+        break;
+      case "ArrowLeft":
+      case "ArrowDown":
+        direction = -1;
+        break;
+      default:
+        return;
+    }
+
+    event.preventDefault();
+
+    const newValue = this.value() + direction * this.step();
+    this.value.set(Math.min(Math.max(newValue, 0), this.max()));
   }
 
 

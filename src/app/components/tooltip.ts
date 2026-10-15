@@ -8,7 +8,7 @@ import { isTouch } from "utility";
 
 type Direction = 'top' | 'bottom' | 'left' | 'right';
 
-const offset = 8;
+const offset = 14;
 
 const directionToPosition: Record<Direction, ConnectedPosition> = {
   top: { originX: "center", originY: "top", overlayX: "center", overlayY: "bottom", offsetY: -offset },
@@ -28,7 +28,7 @@ const directionToPosition: Record<Direction, ConnectedPosition> = {
 })
 export class TooltipDirective {
   text = input.required<string>({ alias: "appTooltip" });
-  location = input<Direction>('right');
+  location = input<Direction>('right', { alias: "tooltipLocation" });
 
   private _injector = inject(Injector);
   private _viewContainerRef = inject(ViewContainerRef);
@@ -78,7 +78,7 @@ export class TooltipDirective {
 
 @Component({
   template: `
-    <div class="py-0.5 px-2 text-xs rounded-lg bg-color-background border border-color-border">
+    <div class="py-1 px-2.5 text-sm rounded-lg bg-color-background border border-color-border">
       {{ this.text() }}
     </div>
   `
