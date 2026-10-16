@@ -8,9 +8,9 @@ import { Dialog } from "@angular/cdk/dialog";
 import { CircleMarker, ImageOverlay, LayerGroup, Map, Point, TileLayer } from "leaflet";
 
 import { SharedModule } from "shared";
-import { DEFAULT_MARKER_COLOR, Marker, MARKER_COLORS } from "models";
+import { createCoordinates, DEFAULT_MARKER_COLOR, Marker, MARKER_COLORS } from "models";
 import { MarkerDialogComponent, SettingsDialogComponent } from "dialogs";
-import { ArsoMeteoService, MarkerService, RadarImage, SettingsService } from "services";
+import { ArsoMeteoService, MarkerService, PositionStorage, RadarImage, SettingsService } from "services";
 
 import { MapContextMenuComponent } from "./context-menu";
 
@@ -30,14 +30,17 @@ type LayerRadarImage = {
   }
 })
 export class MapComponent {
-  private readonly _zoomLimit = { min: 6, max: 14 };
-  private readonly _position = { center: [46.120, 14.815] as [number, number], zoom: 8 };
-
   private readonly _dialog = inject(Dialog);
 
   private readonly _meteoService = inject(ArsoMeteoService);
   private readonly _markerStorage = inject(MarkerService);
+  private readonly _positionStorage = inject(PositionStorage);
   private readonly _settingsService = inject(SettingsService);
+
+
+  private readonly _zoomLimit = { min: 6, max: 14 };
+  private readonly _position = this._positionStorage.position;
+
 
   private readonly _mapElement = viewChild.required<ElementRef<HTMLElement>>('map');
   private readonly _map = computed(() => this.initializeMap(this._mapElement().nativeElement));
@@ -126,6 +129,8 @@ export class MapComponent {
     }).addTo(map);
 
     map.addLayer(this._markerLayerGroup);
+
+    map.on("zoomend moveend", () => this._positionStorage.save({ center: createCoordinates(map.getCenter()), zoom: map.getZoom() }));
 
     return map;
   }
