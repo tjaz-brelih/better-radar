@@ -48,7 +48,7 @@
 
 @if (this.currentRadarImage()?.radarImage?.date; as date) {
   <!-- Time information -->
-  <div appPanel class="absolute top-2 sm:top-6 left-1/2 transform -translate-x-1/2 z-500 w-52 py-3 text-center" animate.enter="motion-safe:animate-slide-in-top">
+  <div appPanel class="absolute top-2 sm:top-6 left-1/2 transform -translate-x-1/2 z-500 w-52 py-3 text-center select-none" animate.enter="motion-safe:animate-slide-in-top">
     <h1 class="font-mono pb-2">
       {{ date | date: 'HH:mm' }}
     </h1>
