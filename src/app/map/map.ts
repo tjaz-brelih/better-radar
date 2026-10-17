@@ -246,7 +246,7 @@ export class MapComponent {
 
   private _addMarker(marker: Marker, store: boolean = true) {
     const [markerStrokeColor, markerClass] = marker.color!.id === "dynamic"
-      ? ["transparent", "stroke-black dark:stroke-white"]
+      ? ["transparent", "stroke-color-text"]
       : [MARKER_COLORS[marker.color!.id], ""]
 
     const layer = new CircleMarker(marker.coordinates, {
