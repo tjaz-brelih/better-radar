@@ -8,7 +8,7 @@
 
 <!-- Map controls -->
 <div class="absolute z-500 top-2 left-2 bottom-2 sm:top-6 sm:left-6 sm:bottom-6 pointer-events-none">
-  <div appPanel class="p-2 flex flex-col max-h-full overflow-scroll pointer-events-auto">
+  <div appPanel class="p-2 flex flex-col max-h-full overflow-x-clip overflow-y-auto pointer-events-auto">
 
     <!-- Zoom -->
     <button appIconButton2="plus" (click)="this.zoom('in')"></button>
