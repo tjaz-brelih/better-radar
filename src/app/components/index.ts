@@ -1,5 +1,5 @@
 export * from './button';
-export * from './button-group';
+export * from './button-toggle';
 export * from './divider';
 export * from './icon';
 export * from './menu';

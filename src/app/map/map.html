@@ -11,28 +11,28 @@
   <div appPanel class="p-2 flex flex-col max-h-full overflow-x-clip overflow-y-auto pointer-events-auto">
 
     <!-- Zoom -->
-    <button appIconButton2="plus" (click)="this.zoom('in')"></button>
-    <button appIconButton2="minus" (click)="this.zoom('out')"></button>
+    <button appIconButton="plus" (click)="this.zoom('in')"></button>
+    <button appIconButton="minus" (click)="this.zoom('out')"></button>
 
     <app-divider />
 
     <!-- Geolocation -->
-    <button appIconButton2="gps-location" (click)="this.setGeolocationMarker()" appTooltip="Add marker at current location"></button>
+    <button appIconButton="gps-location" (click)="this.setGeolocationMarker()" appTooltip="Add marker at current location"></button>
 
     <!-- Refresh -->
-    <button appIconButton2 (click)="this.triggerTimer()" [disabled]="this.isLoading()" appTooltip="Refresh radar">
+    <button appIconButton (click)="this.triggerTimer()" [disabled]="this.isLoading()" appTooltip="Refresh radar">
       <app-icon icon="arrow-path" [class.motion-safe:animate-spin-half]="this.isSpinning()" (animationiteration)="this.onSpinIteration()" />
     </button>
 
     <app-divider />
 
     <!-- Settings -->
-    <button appIconButton2="cog" (click)="this.openSettingsDialog()" appTooltip="Settings"></button>
+    <button appIconButton="cog" (click)="this.openSettingsDialog()" appTooltip="Settings"></button>
 
     <app-divider />
 
     <!-- Opacity -->
-    <button appIconButton2 (click)="this.isOpacityOpen.update(x => !x)" appTooltip="Toggle opacity control">
+    <button appIconButton (click)="this.isOpacityOpen.update(x => !x)" appTooltip="Toggle opacity control">
       <app-icon icon="adjust-vertical" class="ease-out motion-safe:transition-[rotate]" [class.rotate-90]="this.isOpacityOpen()" />
     </button>
 
