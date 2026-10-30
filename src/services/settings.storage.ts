@@ -3,9 +3,11 @@ import { StorageService } from "./storage";
 
 
 type Settings = {
-  theme?: 'auto' | 'light' | 'dark';
+  theme?: Theme;
   opacity?: number;
 };
+
+export type Theme = 'auto' | 'light' | 'dark';
 
 
 @Service()

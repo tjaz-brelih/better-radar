@@ -8,30 +8,6 @@ type ButtonStyle = 'text' | 'filled' | 'outlined';
 
 @Component({
   selector: "button[appIconButton], a[appIconButton]",
-  template: `
-    <ng-content />
-  `,
-  host: {
-    class: `
-      p-2 size-10 bg-color-background border border-color-border rounded-lg
-      flex items-center justify-center
-      not-disabled:cursor-pointer not-disabled:hover:bg-color-background-hover not-disabled:hover:text-color-text-accent
-      not-disabled:active:bg-color-background-active
-      disabled:text-color-disabled disabled:bg-color-background-hover
-    `,
-
-    '[class.bg-color-background-hover]': "this.active()",
-    '[class.text-color-text-accent]': "this.active()"
-  }
-})
-export class IconButtonComponent {
-  public active = input<boolean>(false);
-}
-
-
-
-@Component({
-  selector: "button[appIconButton2], a[appIconButton2]",
   imports: [IconComponent],
   template: `
     @if (this.icon(); as icon) { <app-icon [icon]="icon" /> }
@@ -46,8 +22,8 @@ export class IconButtonComponent {
     `
   }
 })
-export class IconButton2Component {
-  icon = input<string>(undefined, { alias: "appIconButton2" });
+export class IconButtonComponent {
+  icon = input<string>(undefined, { alias: "appIconButton" });
 }
 
 

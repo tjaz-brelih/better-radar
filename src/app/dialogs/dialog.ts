@@ -3,13 +3,15 @@ import { Component } from "@angular/core";
 import { CdkPortalOutlet } from "@angular/cdk/portal";
 import { CdkDialogContainer } from "@angular/cdk/dialog";
 
+import { PanelDirective } from "components";
+
 
 @Component({
   selector: "app-dialog-container",
-  imports: [CdkPortalOutlet],
+  imports: [CdkPortalOutlet, PanelDirective],
 
   template: `
-    <div class="bg-color-background border border-color-border p-6 rounded-2xl shadow-xl/50">
+    <div appPanel class="p-6 bg-color-background!">
       <ng-template cdkPortalOutlet />
     </div>
   `,

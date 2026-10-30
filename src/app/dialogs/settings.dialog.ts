@@ -1,36 +1,34 @@
 import { Component, effect, inject, signal, untracked } from "@angular/core";
+import { TitleCasePipe } from "@angular/common";
 import { Dialog } from "@angular/cdk/dialog";
 
-import { SettingsService } from "services";
-import { ButtonGroupDirective, IconButtonComponent, IconComponent, TooltipDirective } from "components";
+import { SharedModule } from "shared";
+import { SettingsService, Theme } from "services";
 
 
 @Component({
-  imports: [ButtonGroupDirective, IconButtonComponent, IconComponent, TooltipDirective],
+  imports: [TitleCasePipe, SharedModule],
 
   template: `
     <h1>Settings</h1>
 
-    <div class="pt-6 grid grid-cols-[auto_1fr] gap-x-8 gap-y-6">
+    <div class="pt-6">
 
-      <section>
-        <label>Theme</label>
+      <div>
+        <div class="font-medium">Theme</div>
+        <div class="mb-2 text-sm text-color-disabled">Choose how the map and controls look.</div>
 
-        <app-button-group direction="horizontal">
-          <button appIconButton [active]="this.theme() === 'auto'" (click)="this.theme.set('auto')" appTooltip="System" tooltipLocation="bottom">
-            <app-icon icon="sun-moon" />
-          </button>
+        <app-button-toggle-group>
+          @for (theme of this.themes; track theme.theme) {
+            @let t = theme.theme;
 
-          <button appIconButton [active]="this.theme() === 'dark'" (click)="this.theme.set('dark')" appTooltip="Dark" tooltipLocation="bottom">
-            <app-icon icon="moon" />
-          </button>
-
-          <button appIconButton [active]="this.theme() === 'light'" (click)="this.theme.set('light')" appTooltip="Light" tooltipLocation="bottom">
-            <app-icon icon="sun" />
-          </button>
-        </app-button-group>
-      </section>
-
+            <app-button-toggle [active]="this.theme() === t" (click)="this.theme.set(t)">
+              <app-icon [icon]="theme.icon" class="size-5!" />
+              <span>{{ t | titlecase }}</span>
+            </app-button-toggle>
+          }
+        </app-button-toggle-group>
+      </div>
     </div>
   `,
 
@@ -46,6 +44,12 @@ export class SettingsDialogComponent {
   private _settingsService = inject(SettingsService);
 
   public theme = signal(this._settingsService.settings.theme);
+
+  protected themes: { theme: Theme, icon: string }[] = [
+    { theme: 'auto', icon: 'sun-moon' },
+    { theme: 'dark', icon: 'moon' },
+    { theme: 'light', icon: 'sun' }
+  ];
 
 
 
