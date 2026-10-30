@@ -4,7 +4,7 @@ export type EnvironmentData = {
 
 // This should be compatible with Leaflet LatLng.
 export type Coordinates = [lat: number, lng: number];
-
+export function createCoordinates({ lat, lng }: { lat: number, lng: number }): Coordinates { return [lat, lng]; }
 
 export type Marker = {
   coordinates: Coordinates;
